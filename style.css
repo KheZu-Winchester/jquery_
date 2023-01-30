@@ -1,0 +1,16 @@
+.pad {
+    padding : 20px;
+}
+.btn-info{
+    background-color: #BB86FC;
+}
+/* .w-75 {
+    width: 85%!important;
+} */
+/* table {
+    counter-reset: tableCount;     
+}
+.counterCell:before {              
+    content: counter(tableCount); 
+    counter-increment: tableCount; 
+} */
