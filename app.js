@@ -1,79 +1,93 @@
 $("document").ready(function () {
+  $("#btn").click(function(){
+    $("#modal").modal("show")
+  })
     let productArr = [];
     let priceArr = [];
     let res = [];
-    let Id = 0;
-    // let intArr = [];
-     $("#btn").click(function(){
-        $("#modal").modal("show")
-    }) 
-    $("#add").click(function(){
-         
-      $('#first_form').submit(function(e) {
-        let Product = $("input[name='product").val();
-        let Quantity = $("input[name='quantity']").val();
-        let Price = $("input[name='price']").val();   
-        $(".error").remove();
-    
-        if (Product.length = "") {
-          $('#product').after('<span class="error">This field is required</span>');
-        }
-        if (Quantity <= 0) {
-          $('#quantity').after('<span class="error">This field is required</span>');
-        }
-        if (Price <= 0) {
-          $('#price').after('<span class="error">This field is required</span>');
-        }  
-      });
-        // let Id = $("input[name='id']").val();
-        Id ++;
-        let Product = $("input[name='product']").val();
-        let Quantity = $("input[name='quantity']").val();
-        let Price = $("input[name='price']").val();
-        let Result = Price * Quantity;
-        // let idSort = $("table").find("tbody > tr");
-        let idSort = [];
-        idSort.push(Id)
-        // $("th").each(function(column){
-        idSort.sort = ((x,y)=>{
-          y-x;
-          console.log(idSort.shift(Id)); 
-          
-          // let valOne = $(x).children("td").eq(column).text();
-          // let valTwo = $(y).children("td").eq(column).text();
-          // return (x < y)? -1 : (x > y)? 1:0;
-        })
-      // })
-        let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;">'+Id+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+Quantity+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
-        $('tbody').append(tableRow);
-        productArr.push(Product);
-        priceArr.push(Result * 1);
-      //   for (const element of priceArr) {
-      //   priceArr.push(parseInt(element));
-      // }
-      console.log(priceArr);
-       let arrSum =((priceArr)=>{
-            let sum = 0;
-            for (let i = 0; i < priceArr.length; i++) {
-              sum += priceArr[i];
-            }
-            return sum;
-          })
-          let Sum = arrSum(priceArr)
-          res.push(Sum)
-          console.log(res[res.length-1]);
-          console.log(priceArr);
+    let idSort = [];
+  $('#first_form').submit(function(e) {
+    e.preventDefault();
+    let Id = $("input[name='id']").val();
+    let Product = $("input[name='product").val();
+    let Quantity = $("input[name='quantity']").val();
+    let Price = $("input[name='price']").val();   
+    $(".error").remove();
+    if(Id <= 0){
+      $('#id').after('<span class="error">This field is required</span>')
+    }
+    if (Product.length = "") {
+      $('#product').after('<span class="error">This field is required</span>');
+    }                                                         
+    if (Quantity <= 0) {
+      $('#quantity').after('<span class="error">This field is required</span>');
+    }
+    if (Price <= 0) {
+      $('#price').after('<span class="error">This field is required</span>');
+    }  
+    let Result = Price * Quantity;
+    // let idSort = $("table").find("tbody > tr");
+    idSort.push(Id);
+    console.log(idSort);
+    console.log(Quantity);
 
-        $("#result").append(res[res.length-1])
-        console.log(Id,Product,Price,Quantity);  
-        $("input[name='id']").val("");
-        $("input[name='product']").val("");
-        $("input[name='quantity']").val("");
-        $("input[name='price']").val(""); 
-        $("#result").empty().append(res[res.length-1].toLocaleString());
-        $("#modal").modal("hide");
+    
+    // $("th").each(function(column){
+    // idSort.sort = ((x,y)=>{
+    //   y-x;
+    //   console.log(idSort.shift(y,x)); 
+      
+      // let valOne = $(x).children("td").eq(column).text();
+      // let valTwo = $(y).children("td").eq(column).text();
+      // return (x < y)? -1 : (x > y)? 1:0;
+    // })
+  // })
+    let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;">'+Id+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+Quantity+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
+    // console.log(Id);
+    $('tbody').append(tableRow);
+    productArr.push(Product);
+    priceArr.push(Result * 1);
+  //   for (const element of priceArr) {
+  //   priceArr.push(parseInt(element));
+  // }
+  console.log(priceArr);
+   let arrSum =((priceArr)=>{
+        let sum = 0;
+        for (let i = 0; i < priceArr.length; i++) {
+          sum += priceArr[i];
+        }
+        return sum;
+      })
+      let Sum = arrSum(priceArr)
+      res.push(Sum)
+      console.log(res[res.length-1]);
+      console.log(priceArr);
+
+    $("#result").append(res[res.length-1])
+    console.log(Id,Product,Price,Quantity);  
+    $("input[name='id']").val("");
+    $("input[name='product']").val("");
+    $("input[name='quantity']").val("");
+    $("input[name='price']").val(""); 
+    $("#result").empty().append(res[res.length-1].toLocaleString());
+    $("#modal").modal("hide");
+
+});
+
+    // $("#add").click(function(){
+        // Id++;
+        // let Id = $("input[name='id']").val();
+        // let Product = $("input[name='product']").val();
+        // let Quantity = $("input[name='quantity']").val();
+        // let Price = $("input[name='price']").val();
+     
+    // let Id = 0;
+    // let Product = $("input[name='product").val();
+    //     let Quantity = $("input[name='quantity']").val();
+    //     let Price = $("input[name='price']").val();   
+    // let intArr = [];
         
-})
+// })
     $("#input").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#tbody tr").filter(function() {
