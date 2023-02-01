@@ -1,36 +1,58 @@
+// #Sitt Hmue Eain
+// 5.Number sort (asc)
+$('document').ready(function(){
+  // $('#clearSearch').hide();
+  let data = $("#input").val();
+  data.length != 0 ? $('#clearSearch').show() : $('#clearSearch').hide() 
+  // data.length > 0 ? console.log("hello") : console.log("hi"); 
+
+})
 $("document").ready(function () {
   $("#btn").click(function(){
     $("#modal").modal("show")
   })
+    let Id = 0;
     let productArr = [];
     let priceArr = [];
     let res = [];
-    let idSort = [];
+    // let idSort = [];
   $('#first_form').submit(function(e) {
     e.preventDefault();
-    let Id = $("input[name='id']").val();
-    let Product = $("input[name='product").val();
-    let Quantity = $("input[name='quantity']").val();
+    // let Id = $("input[name='id']").val();
+    let Product = $("#product").val();
+    let Quantity = $("#quantity").val();
+    console.log(Quantity);
     let Price = $("input[name='price']").val();   
     $(".error").remove();
-    if(Id <= 0){
-      $('#id').after('<span class="error">This field is required</span>')
-    }
+    // if(Id <= 0){
+    //   return  $('#id').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Id is required</span>')
+    // }
     if (Product.length = "") {
-      $('#product').after('<span class="error">This field is required</span>');
+      return $('#product').after('<span class="error style="font-size:10px;color:red;margin-left:20px">Product is required</span>');
     }                                                         
     if (Quantity <= 0) {
-      $('#quantity').after('<span class="error">This field is required</span>');
+      return $('#quantity').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Quantity is required</span>');
     }
-    if (Price <= 0) {
-      $('#price').after('<span class="error">This field is required</span>');
+    if (Price <= 0) { 
+      return  $('#price').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Price is required</span>');
     }  
+    Id++;
     let Result = Price * Quantity;
-    // let idSort = $("table").find("tbody > tr");
-    idSort.push(Id);
-    console.log(idSort);
-    console.log(Quantity);
+    // idSort.unshift(Id *1);
+    // console.log(idSort);
 
+    // let idSort = $("table").find("tbody > tr");
+    // idSort.sort = (idSort,(x,y)=>{
+    //   y-x;
+    // })
+    // console.log(idSort);
+    // for(const i of idSort){
+    //  let td = idSort.shift(i)
+    //   idSort.unshift(td)
+    //   console.log(idSort);
+    // }
+    // let td = idSort.shift()
+    // console.log(td)
     
     // $("th").each(function(column){
     // idSort.sort = ((x,y)=>{
@@ -42,9 +64,9 @@ $("document").ready(function () {
       // return (x < y)? -1 : (x > y)? 1:0;
     // })
   // })
-    let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;">'+Id+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+Quantity+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
+    let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;">'+Id+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:center">'+Quantity.toLocaleString()+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
     // console.log(Id);
-    $('tbody').append(tableRow);
+    $('tbody').prepend(tableRow);
     productArr.push(Product);
     priceArr.push(Result * 1);
   //   for (const element of priceArr) {
@@ -73,40 +95,61 @@ $("document").ready(function () {
     $("#modal").modal("hide");
 
 });
+$(document).ready(function () {
+  $('#subtract').click(function () {
+      let input = $(this).parent().find('#quantity');
+      let count = parseInt(input.val()) - 1;
+      count = count < 1 ? 1 : count;
+      input.val(count);
+      input.change();
+      return false;
+  })
+})
+$(document).ready(function () {
+  $('#add').click(function () {
+      let input = $(this).parent().find('#quantity');
+      let count = parseInt(input.val()) + 1;
+      count = count < 1 ? 1 : count;
+      input.val(count)
+      input.change();
+      return false;
+  })
+})
 
-    // $("#add").click(function(){
+$(document).ready(function(){
+  $("#clearSearch").click(function(){
+    $("#input").val("");
+  })
+})
+        // $("#add").click(function(){
+        // let Id = 0;
         // Id++;
         // let Id = $("input[name='id']").val();
         // let Product = $("input[name='product']").val();
         // let Quantity = $("input[name='quantity']").val();
         // let Price = $("input[name='price']").val();
-     
-    // let Id = 0;
-    // let Product = $("input[name='product").val();
-    //     let Quantity = $("input[name='quantity']").val();
-    //     let Price = $("input[name='price']").val();   
-    // let intArr = [];
-        
-// })
+        // 
+        // let intArr = [];
+        // })
     $("#input").on("keyup", function() {
         var value = $(this).val().toLowerCase();
         $("#tbody tr").filter(function() {
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
-          // console.log(typeof(Invoice)); 
-    // $("#No").append(Id);
-    // $("#Product").append(Product);
-    // $("#Price").append(Price);
-    // $("#Quantity").append(Quantity);
-    // $("#result").append(Result)
-    // let inv = parseInt(Id)
-    // $("#first").append(inv + 1)
-    // $("#second").append(Product)
-    // })
-    // $('#Result').val(parseInt($('#Result').val()) + 1);
-    // $("#input").autoFocus({arr},{delay :1000,minLength: 2,autoFocus: true})
-    // let count = 0;
+        // console.log(typeof(Invoice)); 
+        // $("#No").append(Id);
+        // $("#Product").append(Product);
+        // $("#Price").append(Price);
+        // $("#Quantity").append(Quantity);
+        // $("#result").append(Result)
+        // let inv = parseInt(Id)
+        // $("#first").append(inv + 1)
+        // $("#second").append(Product)
+        // })
+        // $('#Result').val(parseInt($('#Result').val()) + 1);
+        // $("#input").autoFocus({arr},{delay :1000,minLength: 2,autoFocus: true})
+        // let count = 0;
         // count++;
         // $("div").attr("id", function(index) {
         //     return "div_" + index;
@@ -119,15 +162,54 @@ $("document").ready(function () {
         //     btn.text('Button '+i);
         //     $('#test').append(btn);
         //    }    
-    // $('.minus').click(function(){
-    //     if ($('#quantity').val() != 0)
-    //         $('#quantity' ).val(parseInt($('#quantity').val()) - 1);
-    // });
-    
-    // $('.plus').click(function(){
-    //     $('#quantity').val(parseInt($('#quantity').val()) + 1);
-    // });
-    // $("#decrement").click(function(){
-    //   Quantity--;
-    // })
+        // $('.minus').click(function(){
+        //     if ($('#quantity').val() != 0)
+        //         $('#quantity' ).val(parseInt($('#quantity').val()) - 1);
+        // });
+        
+        // $('.plus').click(function(){
+        //     $('#quantity').val(parseInt($('#quantity').val()) + 1);
+        // });
+        // $("#decrement").click(function(){
+        //   Quantity--;
+        // })
+        // $(document).ready(function () {
+//   $('#subtract').click(function () {
+//       let input = $(this).parent().find('#quantity');
+//       let count = parseInt(input.val()) - 1;
+//       count = count < 1 ? 1 : count;
+//       input.val(count);
+//       input.change();
+//       return false;
+//   })
+// })
+// $(document).ready(function () {
+//   $('#add').click(function () {
+//       let input = $(this).parent().find('#quantity');
+//       let count = (parseInt(input.val()) + 1);
+//       input.val(count)
+//       input.change();
+//       return false;
+//   })
+// })
+// $(document).ready(function () {
+  //   $('#subtract').click(function () {
+  //       let input = $(this).parent().find('#quantity');
+  //       let count = parseInt(input.val()) - 1;
+  //       count = count < 1 ? 1 : count;
+  //       input.val(count);
+  //       input.change();
+  //       return false;
+  //   })
+  // })
+  // $(document).ready(function () 
+  //   $('#add').click(function () {
+  //       let input = $(this).parent().find('#quantity');
+  //       let count = parseInt(input.val()) + 1;
+  //       count = count < 1 ? 1 : count;
+  //       input.val(count)
+  //       input.change();
+  //       return false;
+  //   })
+  // })
 });

@@ -4,6 +4,10 @@
 .btn-info{
     background-color: #BB86FC;
 }
+span .error{
+    margin-left: 1000px;
+}
+
 /* .w-75 {
     width: 85%!important;
 } */

@@ -7,61 +7,62 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-white mb-5">
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-white mb-5 border-bottom">
         <div class="container">
-          <a class="navbar-brand" href="#">App Name</a>
+          <a class="navbar-brand fw-bolder text-success-emphasis" href="#">App Name</a>
         </div>
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-md-6 border border-secondary p-2">
+            <div class="col-md-6 border border-secondary-subtle p-2 bg-secondary-subtle">
                 <div class="row">
                     <div class="col-8">
-                        <input id="input" class="p-1 w-100" type="text" placeholder="Search"> 
+                        <input id="input" class="p-1 w-100 bg-light-subtle border border-secondary-subtle position-relative" type="text" placeholder="Search"> 
+                        <img id="clearSearch" src="./close.png" alt="" class="position-absolute mt-2 bg-secondary-subtle" style="margin-left: -25px;">
                     </div>
                     <div class="col-4 p-0 d-flex">
-                        <button class="btn px-0" id="btn" style="width: 95%;background-color: #BB86FC;"><span class="fw-bold" style="padding:0px 20px;">Add Product+</span></button>
+                        <button class="btn px-0" id="btn" style="width: 94%;background-color: #BB86FC;"><span class="fw-bold" style="padding:0px 20px;color: white;">Add Product+</span></button>
                     </div>
                 </div>
-                    <table class="mt-2">
+                    <table class="mt-2 table table-success table-striped table-hover">
                         <thead>
-                            <tr class="border border-secondary w-100">
+                            <tr class="border border-secondary-subtle w-100 bg-secondary-subtle">
                                 <th style="padding:10px;"class="px-4">No</th>
                                 <th style="padding: 10px;"class="px-5">Product Name</th>
                                 <th style="padding: 10px;"class="px-5">QTY</th>
                                 <th style="padding: 10px;"class="px-5">Price</th>
                             </tr>
-                            <tbody id="tbody" class="pad">
+                            <tbody id="tbody" class="pad bg-light-subtle fw-medium">
                                 
                             </tbody>
                         </thead>
                     </table>
                 </div>
-            <div id="modal" class="modal" tabindex="-1">
+            <div id="modal" class="modal" tabindex="-1" style="margin-top: 120px;">
                 <div class="modal-dialog">
-                  <div class="modal-content">
+                  <div class="modal-content bg-body-secondary">
                     <div class="modal-header">
-                      <h5 class="modal-title">Invoice</h5>
+                      <h5 class="modal-title fw-bolder">Invoice</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="first_form" action="" >
+                    <form id="first_form" action="" method="get" >
                     <div class="modal-body">
-                     No : <input name="id" class="mb-3" type="number" value="1" id="id" placeholder="Invoice number"> <br>
-                    <span style="margin-right: 30px;">Product Name :</span>  <input name="product" class="mb-3" type="text" placeholder="Enter a product name" required id="product"> <br>
-                    <span style="margin-right: 70px;">Quantity :</span>     <input name="quantity" type="number" class="mb-3"  required id="quantity"><br>   
-                    <span style="margin-right: 97px;">Price :</span>  <input name="price" type="number" placeholder="Enter price" required id="price"> <br>
+                    <!-- <span style="margin-right: 110px;">No :</span> <input name="id" class="mb-3" type="number" id="id" placeholder="Invoice number" required min="1"> <br> -->
+                    <span style="margin-right: 30px;" class="text-dark fw-medium">Product Name :</span>  <input name="product" class="mb-3 bg-light-subtle border-0 py-2" type="text" placeholder="Enter a product name" required id="product"> <br>
+                    <span style="margin-right: 75px;" class="text-dark fw-medium">Quantity :</span><span class="btn btn-secondary mb-1" id="subtract">-</span><input name="quantity" type="number"  class="mb-3 bg-light-subtle border-0 py-2 mt-1 w-25 text-center" required id="quantity" value="1" placeholder="Enter quantity" ><span class="btn btn-secondary mb-1" id="add">+</span><br>   
+                    <span style="margin-right: 97px;" class="text-dark fw-medium">Price :</span>  <input name="price" type="number" class="bg-light-subtle border-0 py-2" placeholder="Enter price" required id="price"> <br>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <input id="add" type="submit" value="Submit" class="btn btn-primary">
+                      <input id="add" type="submit" value="Submit" class="btn btn-info">
                     </div>
                     </form>
                   </div>
                 </div>
               </div>
             <div class="col-md-5">
-                <div class="border border-secondary p-3 w-50"><span class="fw-bolder">Total</span> <span style="margin-left: 80px" id="result"></span></div>
+                <div class="border border-secondary p-3 w-50 bg-secondary-subtle"><span class="fw-bolder">Total</span> <span style="margin-left: 70px" id="result" class="fw-bold"></span></div>
             </div>
         </div>
     </div>
