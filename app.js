@@ -1,9 +1,10 @@
 // #Sitt Hmue Eain
 // 5.Number sort (asc)
 $('document').ready(function(){
-  // $('#clearSearch').hide();
-  let data = $("#input").val();
-  data.length != 0 ? $('#clearSearch').show() : $('#clearSearch').hide() 
+  $('#clearSearch').hide();
+  $("input").keypress(function(){
+    $('#clearSearch').show() 
+  });
   // data.length > 0 ? console.log("hello") : console.log("hi"); 
 
 })
@@ -31,12 +32,15 @@ $("document").ready(function () {
       return $('#product').after('<span class="error style="font-size:10px;color:red;margin-left:20px">Product is required</span>');
     }                                                         
     if (Quantity <= 0) {
-      return $('#quantity').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Quantity is required</span>');
+      return $('#add').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Quantity is required</span>');
     }
     if (Price <= 0) { 
       return  $('#price').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Price is required</span>');
     }  
     Id++;
+    sortID = [];
+    sortID.push(Id); 
+    console.log(sortID);
     let Result = Price * Quantity;
     // idSort.unshift(Id *1);
     // console.log(idSort);
@@ -64,7 +68,7 @@ $("document").ready(function () {
       // return (x < y)? -1 : (x > y)? 1:0;
     // })
   // })
-    let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;">'+Id+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:center">'+Quantity.toLocaleString()+'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
+    let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;"><li class="ms-3"></li>'+' </td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-5" style="padding: 10px;text-align:center">'+Quantity.toLocaleString()+'g' +'</td> <td class="pad px-5" style="padding: 10px;text-align:right">'+ Result.toLocaleString()+'</td></tr>'
     // console.log(Id);
     $('tbody').prepend(tableRow);
     productArr.push(Product);
@@ -86,14 +90,13 @@ $("document").ready(function () {
       console.log(priceArr);
 
     $("#result").append(res[res.length-1])
-    console.log(Id,Product,Price,Quantity);  
+    console.log(Id,Product,Price,Quantity);     
     $("input[name='id']").val("");
     $("input[name='product']").val("");
     $("input[name='quantity']").val("");
     $("input[name='price']").val(""); 
     $("#result").empty().append(res[res.length-1].toLocaleString());
     $("#modal").modal("hide");
-
 });
 $(document).ready(function () {
   $('#subtract').click(function () {
@@ -119,6 +122,7 @@ $(document).ready(function () {
 $(document).ready(function(){
   $("#clearSearch").click(function(){
     $("#input").val("");
+    $('#clearSearch').hide();
   })
 })
         // $("#add").click(function(){
