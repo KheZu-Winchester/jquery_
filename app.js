@@ -6,13 +6,13 @@ $('document').ready(function(){
   $('#clearSearch').hide();
   $("input").keypress(function(){
     $('#clearSearch').show() 
-  });
- 
+  }); 
 })
    $("document").ready(function () {
       $("#btn").click(function(){
          $("#modal").modal("show")
       })
+    });
     let Id = 0;
     let productArr = [];
     let priceArr = [];
@@ -22,6 +22,7 @@ $('document').ready(function(){
     let Quantity = $("input[name='quantity']").val();
     console.log(Quantity);
     let Price = $("input[name='price']").val(); 
+    // $(".data-table tbody").append("<tr data-productName='"+Product+"' data-quantity='"+Quantity+"'><td>"+Product+"</td><td>"+Quantity+"</td><td><button class='btn btn-info btn-xs btn-edit'>Edit</button><button class='btn btn-danger btn-xs btn-delete'>Delete</button></td></tr>");
     // let sum = 0
     // let intPrice =   
     $(".error").remove();
@@ -36,16 +37,15 @@ $('document').ready(function(){
       return  $('#price').after('<span class="error" style="font-size:10px;color:red;margin-left:20px">Price is required</span>');
     }  
     Id++;
-    
     // sortID = [];
     // sortID.push(Id); 
     // console.log(sortID);
     let Result = Price * Quantity;
     console.log(typeof(Result));
     productArr.push(Product);
-    priceArr.push(Result * 1);
+    priceArr.push(Result);
     console.log(priceArr);
-    let arrSum =((priceArr)=>{
+    let arrSum =(Id,(priceArr)=>{
         let sum = 0;
         for (let i = 0; i < priceArr.length; i++) {
           sum += priceArr[i];
@@ -53,15 +53,15 @@ $('document').ready(function(){
         return sum;
       })
     
-    let Sum = arrSum(priceArr)
-      console.log(Sum)
-      console.log(priceArr);
+    // let Sum = arrSum(priceArr)
+    //   console.log(Sum)
+    //   console.log(priceArr);
     let tableRow = '<tr><td id="id" class="pad px-4" style="padding:10px;"><li class="ms-3"></li>'+'</td> <td class="pad px-5" style="padding: 10px;">'+Product+'</td> <td class="pad px-4" style="padding: 10px;text-align:center">'+ Quantity.toLocaleString() +'</td> <td id="total" class="pad px-5" style="padding: 10px;text-align:center">'+ Result+'</td><td class="pad px-3" style="padding: 10px"><img class="btn-edit" src="./edit.png"><img id="delete" src="./bin.png"></td>+'+'</tr>'
     $('tbody').prepend(tableRow);
     console.log(priceArr);
     
     $("#delete").click(function(){
-      $(this).closest("tr").remove()
+       $(this).closest("tr").remove();
     // let res =  $(this).closest("tr");
     // let total = res.find("td:eq(3)").text();
     // let Total = parseInt(total);
@@ -70,8 +70,9 @@ $('document').ready(function(){
     //   console.log(Sum);
     //   console.log(typeof(Price));
     //   console.log(typeof(Result));
+      // console.log(priceArr[i]);
 
-      let price_index = priceArr.findIndex(ele=> ele > 0)
+      let price_index = priceArr.findIndex(ele=> ele.Id == priceArr.Id)
       if (price_index !== -1) {
       priceArr.splice(price_index ,1)
       }
@@ -93,7 +94,7 @@ $('document').ready(function(){
     console.log(Id,Product,Price,Quantity);     
     $("input[name='id']").val("");
     $("input[name='product']").val("");
-    $("input[name='quantity']").val("");
+    // $("input[name='quantity']").val("");
     $("input[name='price']").val(""); 
     $("#modal").modal("hide");
     
@@ -103,8 +104,8 @@ $('document').ready(function(){
     //   console.log("what");
     // })
     // $(".btn-edit").click(function(){
-    //     var productName = $(this).parents("tr").attr('data-name');
-    //     var quantity = $(this).parents("tr").attr('data-email');
+    //     var productName = $(this).parents("tr").attr('data-productName');
+    //     var quantity = $(this).parents("tr").attr('data-quantity');
     //     var price = $(this).parents("tr").attr('data-price');
     
     //     $(this).parents("tr").find("td:eq(1)").html('<input name="edit_productName" value="'+productName+'">');
@@ -179,7 +180,6 @@ $('document').ready(function(){
           $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
         });
       });
-    });
         //   for (const element of priceArr) {
   //   priceArr.push(parseInt(element));
   // }
